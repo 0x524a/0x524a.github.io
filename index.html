@@ -467,6 +467,7 @@ details.tl-entry[open] .tl-arrow { transform: rotate(90deg); }
 /* ── AWARDS ── */
 .awards-section { margin-bottom: 3.5rem; }
 .award-grid { display: flex; flex-direction: column; }
+.award-grid[hidden] { display: none; }
 .award-card {
   display: flex;
   align-items: baseline;
@@ -490,14 +491,20 @@ details.tl-entry[open] .tl-arrow { transform: rotate(90deg); }
   color: var(--muted);
   margin-top: 0.15rem;
 }
-.sub-label {
+.award-tabs { display: flex; gap: 0.5rem; margin: 0.9rem 0 1.1rem; }
+.award-tab {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.68rem;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  margin: 1.4rem 0 0.6rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
+.award-tab:hover { color: var(--text); border-color: var(--accent); }
+.award-tab.active { color: var(--bg); background: var(--accent); border-color: var(--accent); }
 
 /* ── PUBLICATIONS ── */
 .pubs-section { max-width: 640px; margin-bottom: 3.5rem; }
@@ -809,7 +816,12 @@ footer .f-id {
   <!-- AWARDS -->
   <section class="awards-section" id="awards">
     <div class="sec-label">awards</div>
-    <div class="award-grid">
+    <div class="award-tabs" role="tablist">
+      <button type="button" class="award-tab active" data-tab="ceo" onclick="showAwardTab('ceo')">CEO-level awards</button>
+      <button type="button" class="award-tab" data-tab="other" onclick="showAwardTab('other')">Corporate &amp; external recognition</button>
+    </div>
+
+    <div class="award-grid" data-panel="ceo">
       <article class="award-card">
         <div class="award-year">2025</div>
         <div class="award-body">
@@ -826,19 +838,47 @@ footer .f-id {
       </article>
     </div>
 
-    <div class="sub-label">corporate awards</div>
-    <ul class="pub-list">
-      <li><strong>Aricent Individual Excellence Award</strong> (2017)</li>
-      <li><strong>Products Excellence Award</strong>, E2E EPC benchmarking on Cavium (2014)</li>
-      <li><strong>Team Excellence Awards</strong>, four consecutive years (2014–2017)</li>
-      <li><strong>EPAM Delivery Excellence &amp; NorCal Delivery Contributor</strong></li>
-      <li><strong>EPAM True Engineering &amp; Plus Platform Extraordinary Contributor</strong></li>
-    </ul>
-
-    <div class="sub-label">external recognition</div>
-    <ul class="pub-list">
-      <li><strong>#HACK100-IV Hackathon, Certificate of Appreciation</strong> (Aricent, Jun 2018)</li>
-    </ul>
+    <div class="award-grid" data-panel="other" hidden>
+      <article class="award-card">
+        <div class="award-year">2017</div>
+        <div class="award-body">
+          <div class="award-name">Aricent Individual Excellence Award</div>
+        </div>
+      </article>
+      <article class="award-card">
+        <div class="award-year">2014</div>
+        <div class="award-body">
+          <div class="award-name">Products Excellence Award</div>
+          <div class="award-sub">E2E EPC benchmarking on Cavium</div>
+        </div>
+      </article>
+      <article class="award-card">
+        <div class="award-year">2014–17</div>
+        <div class="award-body">
+          <div class="award-name">Team Excellence Awards</div>
+          <div class="award-sub">Four consecutive years</div>
+        </div>
+      </article>
+      <article class="award-card">
+        <div class="award-year">—</div>
+        <div class="award-body">
+          <div class="award-name">EPAM Delivery Excellence &amp; NorCal Delivery Contributor</div>
+        </div>
+      </article>
+      <article class="award-card">
+        <div class="award-year">—</div>
+        <div class="award-body">
+          <div class="award-name">EPAM True Engineering &amp; Plus Platform Extraordinary Contributor</div>
+        </div>
+      </article>
+      <article class="award-card">
+        <div class="award-year">2018</div>
+        <div class="award-body">
+          <div class="award-name">#HACK100-IV Hackathon, Certificate of Appreciation</div>
+          <div class="award-sub">Aricent</div>
+        </div>
+      </article>
+    </div>
   </section>
 
   <!-- PUBLICATIONS -->
@@ -1079,6 +1119,17 @@ function toggleTheme() {
   var next = cur === 'dark' ? 'light' : 'dark';
   root.setAttribute('data-theme', next);
   try { localStorage.setItem('rj-theme', next); } catch (e) {}
+}
+
+/* ── AWARDS TABS ── */
+function showAwardTab(tab) {
+  var section = document.getElementById('awards');
+  section.querySelectorAll('.award-tab').forEach(function (btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-tab') === tab);
+  });
+  section.querySelectorAll('.award-grid').forEach(function (panel) {
+    panel.hidden = panel.getAttribute('data-panel') !== tab;
+  });
 }
 
 </script>
