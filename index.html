@@ -359,6 +359,14 @@ details.snip pre {
 }
 
 
+/* Impact tiles */
+.tiles { list-style: none; margin: 0 0 2.25rem; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.tile { background: var(--bg); padding: 1rem 1.05rem 1.05rem; display: flex; flex-direction: column; gap: 0.35rem; border-left: 2px solid transparent; transition: background .14s, border-color .14s; }
+.tile:hover { background: var(--accent-dim); border-left-color: var(--accent); }
+.tile-num { font-family: 'JetBrains Mono', monospace; font-size: 1.55rem; line-height: 1.1; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
+.tile-lbl { font-size: 0.78rem; line-height: 1.4; color: var(--muted); }
+.chart-single { max-width: 420px; }
+
 .chart-note { margin-top: 1.1rem; font-size: 0.8rem; color: var(--muted); }
 .chart-note strong { color: var(--accent); font-weight: 700; }
 
@@ -677,78 +685,49 @@ footer .f-id {
   <!-- IMPACT -->
   <section class="impact-section" id="impact">
     <div class="sec-label">impact</div>
-    <div class="charts-row">
 
-      <div class="chart-block">
-        <div class="chart-title">Device provisioning, per unit</div>
-        <p class="sr-only">Provisioning time before and after: 15 hours reduced to 45 minutes per device, a 95% reduction.</p>
-        <div class="hbar-chart">
-          <div class="hbar-row">
-            <div class="hbar-label">before</div>
-            <div class="hbar-track">
-              <div class="hbar-fill hbar-muted" style="width:100%" title="Before: 15 hours per device">
-                <span class="hbar-value">15h</span>
-              </div>
-            </div>
-          </div>
-          <div class="hbar-row">
-            <div class="hbar-label">after</div>
-            <div class="hbar-track">
-              <div class="hbar-fill hbar-accent" style="width:5%" title="After: 45 minutes per device">
-                <span class="hbar-value">45m</span>
-              </div>
+    <ul class="tiles">
+      <li class="tile"><strong class="tile-num">95%</strong><span class="tile-lbl">faster device provisioning, 15 hours to 45 minutes</span></li>
+      <li class="tile"><strong class="tile-num">~710 h</strong><span class="tile-lbl">technician-hours avoided across the trial fleet</span></li>
+      <li class="tile"><strong class="tile-num">500 ms</strong><span class="tile-lbl">end-to-end video latency on 5G Vision Insight Platform</span></li>
+      <li class="tile"><strong class="tile-num">300 ms</strong><span class="tile-lbl">end-to-end video latency on VESA, public and private 5G</span></li>
+      <li class="tile"><strong class="tile-num">50+</strong><span class="tile-lbl">engineering teams running Agentic-SDLC in production</span></li>
+      <li class="tile"><strong class="tile-num">1 of 5</strong><span class="tile-lbl">field trials converted to signed business</span></li>
+    </ul>
+
+    <div class="chart-block chart-single">
+      <div class="chart-title">Device provisioning, per unit</div>
+      <p class="sr-only">Provisioning time before and after: 15 hours reduced to 45 minutes per device, a 95% reduction.</p>
+      <div class="hbar-chart">
+        <div class="hbar-row">
+          <div class="hbar-label">before</div>
+          <div class="hbar-track">
+            <div class="hbar-fill hbar-muted" style="width:100%" title="Before: 15 hours per device">
+              <span class="hbar-value">15h</span>
             </div>
           </div>
         </div>
-        <p class="chart-note"><strong>−95%</strong>: golden-image builds + AWS SSM agentic flow, fleet-wide</p>
-        <details class="chart-table">
-          <summary><span class="snip-arrow">▶</span>view as table</summary>
-          <table>
-            <thead><tr><th>State</th><th>Time / device</th></tr></thead>
-            <tbody>
-              <tr><td>Before</td><td>15 hours</td></tr>
-              <tr><td>After</td><td>45 minutes</td></tr>
-              <tr><td>Reduction</td><td>95%</td></tr>
-            </tbody>
-          </table>
-        </details>
-      </div>
-
-      <div class="chart-block">
-        <div class="chart-title">Interview funnel, EPAM</div>
-        <p class="sr-only">Interview funnel: 80+ organizational interviews narrowed to 10+ project interviews, roughly a 10% hire rate.</p>
-        <div class="hbar-chart">
-          <div class="hbar-row">
-            <div class="hbar-label">org</div>
-            <div class="hbar-track">
-              <div class="hbar-fill hbar-muted" style="width:100%" title="80+ organizational interviews">
-                <span class="hbar-value">80+</span>
-              </div>
-            </div>
-          </div>
-          <div class="hbar-row">
-            <div class="hbar-label">project</div>
-            <div class="hbar-track">
-              <div class="hbar-fill hbar-accent" style="width:13%" title="10+ project interviews">
-                <span class="hbar-value">10+</span>
-              </div>
+        <div class="hbar-row">
+          <div class="hbar-label">after</div>
+          <div class="hbar-track">
+            <div class="hbar-fill hbar-accent" style="width:5%" title="After: 45 minutes per device">
+              <span class="hbar-value">45m</span>
             </div>
           </div>
         </div>
-        <p class="chart-note"><strong>~10%</strong> hire rate across organizational and project rounds</p>
-        <details class="chart-table">
-          <summary><span class="snip-arrow">▶</span>view as table</summary>
-          <table>
-            <thead><tr><th>Stage</th><th>Interviews</th></tr></thead>
-            <tbody>
-              <tr><td>Organizational</td><td>80+</td></tr>
-              <tr><td>Project</td><td>10+</td></tr>
-              <tr><td>Hire rate</td><td>~10%</td></tr>
-            </tbody>
-          </table>
-        </details>
       </div>
-
+      <p class="chart-note"><strong>−95%</strong>: Golden .iso automation (cloud-init, Clonezilla) with pre-provisioned encryption and credentials</p>
+      <details class="chart-table">
+        <summary><span class="snip-arrow">▶</span>view as table</summary>
+        <table>
+          <thead><tr><th>State</th><th>Time / device</th></tr></thead>
+          <tbody>
+            <tr><td>Before</td><td>15 hours</td></tr>
+            <tr><td>After</td><td>45 minutes</td></tr>
+            <tr><td>Reduction</td><td>95%</td></tr>
+          </tbody>
+        </table>
+      </details>
     </div>
   </section>
 
